@@ -1,0 +1,5 @@
+1.SELECT pnimi FROM projekti WHERE priorit = (SELECT priorit FROM projekti WHERE ptun = 'P5');
+2. SELECT enimi || ' ' || snimi AS nimi, palkka FROM henkilo WHERE palkka = (SELECT MAX(palkka) FROM henkilo);
+3.SELECT projekti.pnimi FROM projekti JOIN proj_henk ON projekti.ptun = proj_henk.ptun WHERE proj_henk.htun = 2134;
+4.SELECT DISTINCT henkilo.enimi, henkilo.snimi FROM henkilo WHERE htun IN ( SELECT DISTINCT htun FROM proj_henk JOIN projekti ON proj_henk.ptun = projekti.ptun WHERE projekti.priorit IN (3, 1) );
+5.SELECT pnimi FROM projekti WHERE EXISTS ( SELECT 1 FROM proj_henk WHERE projekti.ptun = proj_henk.ptun AND proj_henk.htun = 2245 );

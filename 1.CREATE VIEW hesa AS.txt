@@ -1,0 +1,16 @@
+1.CREATE VIEW hesa AS
+SELECT snimi, enimi, htun, kunta, pvm
+FROM henkilo
+WHERE kunta = 'HELSINKI';
+SELECT * FROM hesa;
+
+2.CREATE VIEW v_prtunnit AS SELECT projekti.ptun, projekti.pnimi, COALESCE(SUM(proj_henk.tunnit), 0) AS tehdyt_tunnit_yhteensa FROM projekti LEFT JOIN proj_henk ON projekti.ptun = proj_henk.ptun GROUP BY projekti.ptun, projekti.pnimi;
+SELECT * FROM v_prtunnit;
+
+3.CREATE VIEW projektit AS SELECT projekti.sijainti, projekti.pnimi AS projekti_nimi, henkilo.enimi || ' ' || henkilo.snimi AS henkilon_nimi, henkilo.palkka, proj_henk.tunnit FROM projekti JOIN proj_henk ON projekti.ptun = proj_henk.ptun JOIN henkilo ON proj_henk.htun = henkilo.htun;
+
+4.CREATE VIEW Hlotilanne AS SELECT henkilo.enimi || ' ' || henkilo.snimi AS henkilon_nimi, henkilo.kunta, COALESCE(SUM(proj_henk.tunnit), 0) AS tehdyt_tunnit_yhteensa, COALESCE(SUM(proj_henk.tunnit_suun), 0) AS suunnitellut_tunnit_yhteensa, COALESCE(SUM(proj_henk.tunnit), 0) - COALESCE(SUM(proj_henk.tunnit_suun), 0) AS erotus FROM henkilo LEFT JOIN proj_henk ON henkilo.htun = proj_henk.htun LEFT JOIN projekti ON proj_henk.ptun = projekti.ptun GROUP BY henkilo.enimi, henkilo.snimi, henkilo.kunta;
+
+5.SELECT henkilon_nimi, tehdyt_tunnit_yhteensa, suunnitellut_tunnit_yhteensa, erotus FROM Hlotilanne ORDER BY erotus DESC;
+
+6.

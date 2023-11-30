@@ -1,0 +1,22 @@
+1. SELECT * FROM osasto;
+2. SELECT ostun, koodi FROM osasto;
+3. SELECT DISTINCT sijainti FROM `projekti` WHERE sijainti is not null;
+4. SELECT enimi, snimi, kunta, palkka AS kkpalkka FROM henkilo;
+5. SELECT kunta, snimi FROM henkilo ORDER BY kunta, snimi;
+6. SELECT * FROM henkilo WHERE tutkinto='Yo';
+7. SELECT * FROM henkilo WHERE palkka < 2960;
+8. SELECT palkka FROM henkilo WHERE palkka <= 2960 ORDER BY palkka DESC;
+9. SELECT ostun, enimi, snimi, kunta FROM henkilo WHERE ostun = 3 AND kunta = "Turku"     ORDER BY enimi, snimi;
+10. SELECT palkka, enimi, snimi, kunta, htun FROM henkilo WHERE palkka = 2800 AND kunta = "Turku";
+11. SELECT * FROM henkilo WHERE palkka <> 2800;
+12. SELECT * FROM henkilo WHERE ostun <> 2800 AND (kunta = "Tampere" OR veropros = 22);
+13. SELECT * FROM henkilo WHERE (tutkinto = 'Yo' OR tutkinto = 'FK') AND (palkka = 3100 OR palkka = 2800);
+14. SELECT * FROM henkilo WHERE kunta LIKE 'T%';
+15. SELECT * FROM projekti WHERE pnimi LIKE '%RA%';
+16. SELECT * FROM henkilo WHERE NOT snimi LIKE '%_e%';
+17. SELECT * FROM henkilo WHERE veropros BETWEEN 22 AND 31 ORDER BY veropros DESC;
+18. SELECT * FROM henkilo WHERE veropros IN ( 31, 24.5, 37);
+19. SELECT * FROM henkilo WHERE tutkinto IS NULL;
+20. SELECT * FROM henkilo WHERE NOT tutkinto= "FK";
+
+

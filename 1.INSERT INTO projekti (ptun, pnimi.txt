@@ -1,0 +1,8 @@
+1.INSERT INTO projekti (ptun, pnimi, sijainti) VALUES ('P7', 'TARJOUS', 'LAHTI');
+2.UPDATE projekti SET priorit = priorit + 1 WHERE sijainti = 'TURKU';
+3.DELETE FROM projekti WHERE ptun = 'P6';
+4.INSERT INTO prtunnit (ptun, pnimi, yht) SELECT projekti.ptun, projekti.pnimi, COALESCE(SUM(proj_henk.tunnit), 0) AS yht FROM projekti LEFT JOIN proj_henk ON projekti.ptun = proj_henk.ptun GROUP BY projekti.ptun, projekti.pnimi;
+5.UPDATE henkilo SET palkka = palkka * 1.1 WHERE htun IN ( SELECT htun FROM proj_henk WHERE ptun = 'P2' );
+6.DELETE FROM proj_henk WHERE htun IN ( SELECT htun FROM henkilo WHERE snimi = 'Joki' ) AND ptun = 'P4';
+7.UPDATE projekti SET sijainti = 'OULU', priorit = 4 WHERE ptun IN ( SELECT ptun FROM proj_henk GROUP BY ptun HAVING COUNT(*) <= 2 );
+8.

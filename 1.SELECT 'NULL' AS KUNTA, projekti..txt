@@ -1,0 +1,3 @@
+1.SELECT 'NULL' AS KUNTA, projekti.ptun AS TUN, 'PROJEKTI' AS TYYPPI FROM projekti UNION ALL SELECT henkilo.kunta AS KUNTA, henkilo.htun AS TUN, 'HENKILO' AS TYYPPI FROM henkilo ORDER BY KUNTA ASC, TUN DESC;
+2.SELECT ptun AS tunnus, pnimi AS nimi, COALESCE(sijainti, '<ei ole>') AS sijainti FROM projekti WHERE sijainti IS NULL UNION SELECT ptun, pnimi, sijainti FROM projekti WHERE sijainti IS NOT NULL;
+3.SELECT snimi AS SNMI, MAX(CASE WHEN palkka <= 2800 THEN palkka ELSE 0 END) AS PIENIP, MAX(CASE WHEN palkka > 2800 THEN palkka ELSE 0 END) AS SUURIP FROM henkilo GROUP BY snimi ORDER BY SNMI;
